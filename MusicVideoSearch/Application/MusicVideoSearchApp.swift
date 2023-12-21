@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct MusicVideoSearchApp: App {
-    private let appDIContainer: AppDIContainer = AppDIContainer()
+    private let appFlowCoordinator: AppFlowCoordinator = {
+        let appDIContainer = AppDIContainer()
+        let appFlowCoordinator = AppFlowCoordinator(appDIContainer: appDIContainer)
+        return appFlowCoordinator
+    }()
     
     var body: some Scene {
         WindowGroup {
-            let sceneDIContainer = appDIContainer.makeSceneDIContainer()
-            ContentView(sceneDIContainer: sceneDIContainer)
+            appFlowCoordinator.start()
         }
     }
 }

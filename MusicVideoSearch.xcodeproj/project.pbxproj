@@ -29,6 +29,8 @@
 		A00152D42B34185400970A20 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152D32B34185400970A20 /* Constants.swift */; };
 		A00152D62B34189D00970A20 /* MusicVideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152D52B34189D00970A20 /* MusicVideoDetailView.swift */; };
 		A00152D82B34190A00970A20 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152D72B34190A00970A20 /* AppDIContainer.swift */; };
+		A00152DA2B341B8200970A20 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152D92B341B8200970A20 /* AppFlowCoordinator.swift */; };
+		A00152DC2B341BCF00970A20 /* ViewFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152DB2B341BCF00970A20 /* ViewFlowCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		A00152D32B34185400970A20 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A00152D52B34189D00970A20 /* MusicVideoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoDetailView.swift; sourceTree = "<group>"; };
 		A00152D72B34190A00970A20 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		A00152D92B341B8200970A20 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
+		A00152DB2B341BCF00970A20 /* ViewFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlowCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				A00152912B34094600970A20 /* ContentView.swift */,
+				A00152DB2B341BCF00970A20 /* ViewFlowCoordinator.swift */,
 				A00152C22B340E6500970A20 /* MusicVideoSearchView */,
 				A00152C32B340E7A00970A20 /* MusicVideoDetailVIew */,
 			);
@@ -221,6 +226,7 @@
 				A00152CE2B3414A400970A20 /* SceneDIContainer.swift */,
 				A00152D02B3417EB00970A20 /* AppConfiguration.swift */,
 				A00152D72B34190A00970A20 /* AppDIContainer.swift */,
+				A00152D92B341B8200970A20 /* AppFlowCoordinator.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -308,11 +314,13 @@
 				A00152D62B34189D00970A20 /* MusicVideoDetailView.swift in Sources */,
 				A00152BC2B340E3100970A20 /* MusicVideoSearchRepository.swift in Sources */,
 				A00152D12B3417EB00970A20 /* AppConfiguration.swift in Sources */,
+				A00152DC2B341BCF00970A20 /* ViewFlowCoordinator.swift in Sources */,
 				A00152C52B340E9900970A20 /* MusicVideoSearchView.swift in Sources */,
 				A00152922B34094600970A20 /* ContentView.swift in Sources */,
 				A00152BE2B340E4000970A20 /* DefaultMusicVideoSearchRepository.swift in Sources */,
 				A00152CC2B3412C000970A20 /* MusicVideoItemViewModel.swift in Sources */,
 				A00152C72B340EA500970A20 /* MusicVideoSearchViewModel.swift in Sources */,
+				A00152DA2B341B8200970A20 /* AppFlowCoordinator.swift in Sources */,
 				A00152AE2B340D3600970A20 /* NetworkConfiguration.swift in Sources */,
 				A00152AA2B340CB100970A20 /* NetworkService.swift in Sources */,
 				A00152D82B34190A00970A20 /* AppDIContainer.swift in Sources */,

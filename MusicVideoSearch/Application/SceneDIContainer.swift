@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SceneDIContainer {
+final class SceneDIContainer: ViewFlowCoordinatorDependencies {
     
     struct Dependencies {
         let apiDataTransferService: DataTransferService
@@ -17,6 +17,10 @@ final class SceneDIContainer {
     
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
+    }
+    
+    func makeViewFlowCoordinator() -> ViewFlowCoordinator {
+        return ViewFlowCoordinator(dependencies: self)
     }
     
     func makeMusicVideoSearchRepository() -> MusicVideoSearchRepository {

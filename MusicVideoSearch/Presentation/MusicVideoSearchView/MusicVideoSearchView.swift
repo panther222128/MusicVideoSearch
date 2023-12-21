@@ -23,5 +23,5 @@ struct MusicVideoSearchView: View {
 
 // MARK: - MusicVideoSearchView
 #Preview {
-    ContentView()
+    ContentView(sceneDIContainer: AppDIContainer().makeSceneDIContainer())
 }
