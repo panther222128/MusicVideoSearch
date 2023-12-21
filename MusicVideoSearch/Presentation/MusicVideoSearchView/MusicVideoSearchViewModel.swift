@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol MusicVideoSearchViewModel {
+protocol MusicVideoSearchViewModel: ObservableObject {
     var items: [MusicVideoItemViewModel] { get }
 }
 

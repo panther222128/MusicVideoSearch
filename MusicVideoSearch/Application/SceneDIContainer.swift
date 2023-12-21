@@ -31,7 +31,7 @@ final class SceneDIContainer: ViewFlowCoordinatorDependencies {
         return DefaultMusicVideoSearchUseCase(repository: makeMusicVideoSearchRepository())
     }
     
-    func makeMusicVideoSearchViewModel() -> MusicVideoSearchViewModel {
+    func makeMusicVideoSearchViewModel() -> some MusicVideoSearchViewModel {
         return DefaultMusicVideoSearchViewModel(useCase: makeMusicVideoSearchUseCase())
     }
     

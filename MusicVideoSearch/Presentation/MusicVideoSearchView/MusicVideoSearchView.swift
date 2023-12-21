@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct MusicVideoSearchView: View {
+struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchViewModel {
     
-    var viewModel: MusicVideoSearchViewModel
+    @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         VStack {
