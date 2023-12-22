@@ -9,17 +9,16 @@ import SwiftUI
 
 struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchViewModel {
     
-    @State var query: String = ""
     @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
-            TextField("Search", text: $query)
+            TextField("Search", text: $viewModel.query)
                 .foregroundStyle(.primary)
         }
         .onSubmit {
-            viewModel.didSearch(with: query)
+            viewModel.didSearch(with: viewModel.query)
         }
         .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
         .foregroundStyle(.secondary)
