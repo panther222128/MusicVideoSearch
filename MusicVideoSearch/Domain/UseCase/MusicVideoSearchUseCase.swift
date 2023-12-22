@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 protocol MusicVideoSearchUseCase {
-    
+    func executeRequest(with requestValue: SearchMusicVideoUseCaseRequestValue) throws -> AnyPublisher<MusicVideos, Error>
 }
 
 final class DefaultMusicVideoSearchUseCase: MusicVideoSearchUseCase {
@@ -19,4 +20,20 @@ final class DefaultMusicVideoSearchUseCase: MusicVideoSearchUseCase {
         self.repository = repository
     }
     
+    func executeRequest(with requestValue: SearchMusicVideoUseCaseRequestValue) throws -> AnyPublisher<MusicVideos, Error> {
+        do {
+            return try repository.requestMusicVideo(with: requestValue.query, limit: requestValue.limit, offset: requestValue.offset, entity: requestValue.entity)
+                .eraseToAnyPublisher()
+        } catch let error {
+            throw error
+        }
+    }
+    
+}
+
+struct SearchMusicVideoUseCaseRequestValue {
+    let query: MusicVideoQuery
+    let limit: Int
+    let offset: Int
+    let entity: String
 }

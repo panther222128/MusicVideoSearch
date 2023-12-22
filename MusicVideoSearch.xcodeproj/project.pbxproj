@@ -31,6 +31,10 @@
 		A00152D82B34190A00970A20 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152D72B34190A00970A20 /* AppDIContainer.swift */; };
 		A00152DA2B341B8200970A20 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152D92B341B8200970A20 /* AppFlowCoordinator.swift */; };
 		A00152DC2B341BCF00970A20 /* ViewFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152DB2B341BCF00970A20 /* ViewFlowCoordinator.swift */; };
+		A0C857172B3500F500F90B22 /* MusicVideoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C857162B3500F500F90B22 /* MusicVideoResponseDTO.swift */; };
+		A0C857192B3500FD00F90B22 /* MusicVideoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C857182B3500FD00F90B22 /* MusicVideoRequestDTO.swift */; };
+		A0C8571B2B35023D00F90B22 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8571A2B35023D00F90B22 /* APIEndpoints.swift */; };
+		A0C8571D2B35037B00F90B22 /* MusicVideoQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8571C2B35037B00F90B22 /* MusicVideoQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +63,10 @@
 		A00152D72B34190A00970A20 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		A00152D92B341B8200970A20 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
 		A00152DB2B341BCF00970A20 /* ViewFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlowCoordinator.swift; sourceTree = "<group>"; };
+		A0C857162B3500F500F90B22 /* MusicVideoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoResponseDTO.swift; sourceTree = "<group>"; };
+		A0C857182B3500FD00F90B22 /* MusicVideoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoRequestDTO.swift; sourceTree = "<group>"; };
+		A0C8571A2B35023D00F90B22 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
+		A0C8571C2B35037B00F90B22 /* MusicVideoQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +151,7 @@
 		A00152B62B340DBB00970A20 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A0C857142B3500D300F90B22 /* Network */,
 				A00152B92B340DFF00970A20 /* Repository */,
 			);
 			path = Data;
@@ -215,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				A00152C92B3412AA00970A20 /* MusicVideo.swift */,
+				A0C8571C2B35037B00F90B22 /* MusicVideoQuery.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -237,6 +247,24 @@
 				A00152D32B34185400970A20 /* Constants.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		A0C857142B3500D300F90B22 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A0C857152B3500E700F90B22 /* MusicVideoDTO */,
+				A0C8571A2B35023D00F90B22 /* APIEndpoints.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		A0C857152B3500E700F90B22 /* MusicVideoDTO */ = {
+			isa = PBXGroup;
+			children = (
+				A0C857162B3500F500F90B22 /* MusicVideoResponseDTO.swift */,
+				A0C857182B3500FD00F90B22 /* MusicVideoRequestDTO.swift */,
+			);
+			path = MusicVideoDTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C8571B2B35023D00F90B22 /* APIEndpoints.swift in Sources */,
 				A00152B02B340D5400970A20 /* DataTransferService.swift in Sources */,
 				A00152CA2B3412AA00970A20 /* MusicVideo.swift in Sources */,
 				A00152D62B34189D00970A20 /* MusicVideoDetailView.swift in Sources */,
@@ -316,7 +345,9 @@
 				A00152D12B3417EB00970A20 /* AppConfiguration.swift in Sources */,
 				A00152DC2B341BCF00970A20 /* ViewFlowCoordinator.swift in Sources */,
 				A00152C52B340E9900970A20 /* MusicVideoSearchView.swift in Sources */,
+				A0C8571D2B35037B00F90B22 /* MusicVideoQuery.swift in Sources */,
 				A00152922B34094600970A20 /* ContentView.swift in Sources */,
+				A0C857172B3500F500F90B22 /* MusicVideoResponseDTO.swift in Sources */,
 				A00152BE2B340E4000970A20 /* DefaultMusicVideoSearchRepository.swift in Sources */,
 				A00152CC2B3412C000970A20 /* MusicVideoItemViewModel.swift in Sources */,
 				A00152C72B340EA500970A20 /* MusicVideoSearchViewModel.swift in Sources */,
@@ -329,6 +360,7 @@
 				A00152B32B340D8500970A20 /* Dictionary.swift in Sources */,
 				A00152AC2B340D2000970A20 /* Endpoint.swift in Sources */,
 				A00152902B34094600970A20 /* MusicVideoSearchApp.swift in Sources */,
+				A0C857192B3500FD00F90B22 /* MusicVideoRequestDTO.swift in Sources */,
 				A00152B52B340D8C00970A20 /* Encodable.swift in Sources */,
 				A00152CF2B3414A400970A20 /* SceneDIContainer.swift in Sources */,
 			);
@@ -479,9 +511,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.horus222128.MusicVideoSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -508,9 +543,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.horus222128.MusicVideoSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
