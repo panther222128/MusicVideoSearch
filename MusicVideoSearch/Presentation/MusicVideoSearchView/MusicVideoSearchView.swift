@@ -8,7 +8,7 @@
 import SwiftUI
 
 /*
- 1. CoreGraphics error
+ 1. CoreGraphics error: 'Error: this application, or a library it uses, has passed an invalid numeric value (NaN, or not-a-number) to CoreGraphics API and this value is being ignored. Please fix this problem.'
  2. Error handling
  3. Constants URL -> User defined
  */
@@ -47,8 +47,6 @@ struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchVi
                 }
             }
         }
-        
-        Spacer()
     }
     
 }
