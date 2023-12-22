@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+/*
+ 1. CoreGraphics error
+ 2. Error handling
+ 3. Constants URL -> User defined
+ */
+
 struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchViewModel {
     
     @State var query: String = ""
