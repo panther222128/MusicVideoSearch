@@ -15,7 +15,6 @@ enum MusicVideosError: Error {
 
 protocol MusicVideoSearchViewModel: ObservableObject {
     var items: [MusicVideoItemViewModel] { get }
-    var query: String { get set }
     var error: Error? { get }
     
     func didSearch(with query: String)
@@ -24,7 +23,6 @@ protocol MusicVideoSearchViewModel: ObservableObject {
 final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
     
     @Published var items: [MusicVideoItemViewModel]
-    @Published var query: String
     @Published var error: Error?
     private var musicVideos: MusicVideos
     private var cancellables: Set<AnyCancellable>
@@ -36,7 +34,6 @@ final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
     init(useCase: MusicVideoSearchUseCase, limit: Int = 20, offset: Int = 0, entity: String = "musicVideo") {
         self.useCase = useCase
         self.items = []
-        self.query = ""
         self.musicVideos = .init(resultCount: 0, results: [])
         self.cancellables = []
         self.limit = limit
@@ -52,7 +49,7 @@ final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
     
     private func load(with musicVideoQuery: MusicVideoQuery) {
         do {
-            try useCase.executeRequest(with: SearchMusicVideoUseCaseRequestValue(query: .init(query: query), limit: limit, offset: offset, entity: entity))
+            try useCase.executeRequest(with: SearchMusicVideoUseCaseRequestValue(query: .init(query: musicVideoQuery.query), limit: limit, offset: offset, entity: entity))
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] completion in
                     switch completion {
