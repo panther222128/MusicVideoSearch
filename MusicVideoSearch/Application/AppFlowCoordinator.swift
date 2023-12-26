@@ -17,8 +17,7 @@ final class AppFlowCoordinator {
     
     func start() -> ContentView {
         let sceneDIContainer = appDIContainer.makeSceneDIContainer()
-        let flow = sceneDIContainer.makeViewFlowCoordinator()
-        return flow.start(with: sceneDIContainer)
+        return ContentView(sceneDIContainer: sceneDIContainer)
     }
     
 }

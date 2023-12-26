@@ -12,7 +12,9 @@ struct ContentView: View {
     
     var body: some View {
         let viewModel = sceneDIContainer.makeMusicVideoSearchViewModel()
-        MusicVideoSearchView(viewModel: viewModel)
+        NavigationStack {
+            MusicVideoSearchView(viewModel: viewModel)
+        }
     }
 }
 

@@ -35,14 +35,19 @@ struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchVi
         ScrollView(showsIndicators: false) {
             VStack {
                 ForEach(viewModel.items) { item in
-                    HStack {
-                        if let url = URL(string: item.artworkUrl100) {
-                            AsyncImage(url: url)
+                    NavigationLink(destination: MusicVideoDetailView(viewModel: .init(id: item.id, artistName: item.artistName, trackName: item.trackName, artworkUrl100: item.artworkUrl100))) {
+                        HStack {
+                            if let url = URL(string: item.artworkUrl100) {
+                                AsyncImage(url: url)
+                            }
+                            Text(item.artistName)
+                                .foregroundStyle(Color.black)
+                            Text("-")
+                                .foregroundStyle(Color.black)
+                            Text(item.trackName)
+                                .foregroundStyle(Color.black)
+                            Spacer()
                         }
-                        Text(item.artistName)
-                        Text("-")
-                        Text(item.trackName)
-                        Spacer()
                     }
                 }
             }
