@@ -13,7 +13,17 @@ struct ContentView: View {
     var body: some View {
         let viewModel = sceneDIContainer.makeMusicVideoSearchViewModel()
         NavigationStack {
-            MusicVideoSearchView(viewModel: viewModel)
+            TabView {
+                MusicVideoSearchView(viewModel: viewModel)
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                    }
+                
+                MusicVideoBookmarkView()
+                    .tabItem {
+                        Image(systemName: "star.fill")
+                    }
+            }
         }
     }
 }
