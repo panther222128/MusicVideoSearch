@@ -51,6 +51,9 @@ struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchVi
                     }
                 }
             }
+            .alert(isPresented: $viewModel.isErrorOccured) {
+                Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? ""), dismissButton: .cancel())
+            }
         }
     }
     

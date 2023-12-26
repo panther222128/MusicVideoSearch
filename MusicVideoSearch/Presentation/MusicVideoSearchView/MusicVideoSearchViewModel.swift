@@ -15,6 +15,7 @@ enum MusicVideosError: Error {
 
 protocol MusicVideoSearchViewModel: ObservableObject {
     var items: [MusicVideoItemViewModel] { get }
+    var isErrorOccured: Bool { get set }
     var error: Error? { get }
     
     func didSearch(with query: String)
@@ -23,6 +24,7 @@ protocol MusicVideoSearchViewModel: ObservableObject {
 final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
     
     @Published var items: [MusicVideoItemViewModel]
+    @Published var isErrorOccured: Bool
     @Published var error: Error?
     private var musicVideos: MusicVideos
     private var cancellables: Set<AnyCancellable>
@@ -39,6 +41,7 @@ final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
         self.limit = limit
         self.offset = offset
         self.entity = entity
+        self.isErrorOccured = false
         self.error = nil
     }
     
@@ -57,11 +60,13 @@ final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
                         return
                         
                     case .failure(let error):
+                        self?.isErrorOccured = true
                         self?.error = error
                         
                     }
                 } receiveValue: { [weak self] musicVideos in
                     if musicVideos.resultCount == 0 || musicVideos.results.isEmpty {
+                        self?.isErrorOccured = true
                         self?.error = MusicVideosError.isEmpty
                     } else {
                         self?.load(musicVideos)
@@ -70,6 +75,7 @@ final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
                 .store(in: &cancellables)
 
         } catch {
+            self.isErrorOccured = true
             self.error = MusicVideosError.loadError
         }
     }

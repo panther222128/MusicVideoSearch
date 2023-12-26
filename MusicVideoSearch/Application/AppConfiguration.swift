@@ -9,9 +9,9 @@ import Foundation
 
 final class AppConfiguration {
     lazy var apiBaseURL: String = {
-        guard let url = Constants.BaseURL.url else {
+        guard let urlString = Bundle.main.infoDictionary?["API_BASE_URL"] as? String else {
             fatalError("URL Error")
         }
-        return url.absoluteString
+        return URL(string: urlString)!.absoluteString
     }()
 }
