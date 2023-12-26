@@ -12,6 +12,7 @@ struct MusicVideoItemViewModel: Identifiable {
     let artistName: String
     let trackName: String
     let artworkUrl100: String
+    let primaryGenreName: String
 }
 
 extension MusicVideoItemViewModel {
@@ -20,5 +21,6 @@ extension MusicVideoItemViewModel {
         self.artistName = musicVideo.artistName
         self.trackName = musicVideo.trackName
         self.artworkUrl100 = musicVideo.artworkUrl100
+        self.primaryGenreName = musicVideo.primaryGenreName
     }
 }

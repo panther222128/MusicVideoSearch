@@ -9,6 +9,7 @@ import SwiftUI
 
 /*
  1. CoreGraphics error: 'Error: this application, or a library it uses, has passed an invalid numeric value (NaN, or not-a-number) to CoreGraphics API and this value is being ignored. Please fix this problem.'
+ 2. Preview
  */
 
 struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchViewModel {
@@ -34,7 +35,7 @@ struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchVi
             ScrollView(showsIndicators: false) {
                 VStack {
                     ForEach(viewModel.items) { item in
-                        NavigationLink(destination: MusicVideoDetailView(viewModel: .init(id: item.id, artistName: item.artistName, trackName: item.trackName, artworkUrl100: item.artworkUrl100))) {
+                        NavigationLink(destination: viewModel.didSelect(musicVideo: .init(artistName: item.artistName, trackName: item.trackName, artworkUrl100: item.artworkUrl100, primaryGenreName: item.primaryGenreName))) {
                             HStack {
                                 if let url = URL(string: item.artworkUrl100) {
                                     AsyncImage(url: url)
@@ -61,5 +62,7 @@ struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchVi
 
 // MARK: - MusicVideoSearchView
 #Preview {
-    ContentView(sceneDIContainer: AppDIContainer().makeSceneDIContainer())
+    ContentView(sceneDIContainer: AppDIContainer().makeSceneDIContainer(), searchViewModelActions: .init(showMusicVideoDetail: { musicVideo in
+        MusicVideoDetailView(viewModel: DefaultMusicVideoDetailViewModel(playListUseCase: DefaultMusicVideoPlayListUseCase(repository: DefaultMusicVideoRepository(musicVideoStorage: DefaultMusicVideoStorage())), artistName: "", trackName: "", artworkUrl100: "", primaryGenreName: ""))
+    }))
 }

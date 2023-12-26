@@ -13,12 +13,17 @@ enum MusicVideosError: Error {
     case loadError
 }
 
+struct MusicVideoSearchViewModelActions {
+    let showMusicVideoDetail: (MusicVideo) -> MusicVideoDetailView
+}
+
 protocol MusicVideoSearchViewModel: ObservableObject {
     var items: [MusicVideoItemViewModel] { get }
     var isErrorOccured: Bool { get set }
     var error: Error? { get }
     
     func didSearch(with query: String)
+    func didSelect(musicVideo: MusicVideo) -> MusicVideoDetailView?
 }
 
 final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
@@ -31,10 +36,14 @@ final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
     private let limit: Int
     private let offset: Int
     private let entity: String
-    private let useCase: MusicVideoSearchUseCase
+    private let searchUseCase: MusicVideoSearchUseCase
+    private let playListUseCase: MusicVideoPlayListUseCase
+    private let actions: MusicVideoSearchViewModelActions?
     
-    init(useCase: MusicVideoSearchUseCase, limit: Int = 20, offset: Int = 0, entity: String = "musicVideo") {
-        self.useCase = useCase
+    init(searchUseCase: MusicVideoSearchUseCase, playListUseCase: MusicVideoPlayListUseCase, actions: MusicVideoSearchViewModelActions, limit: Int = 20, offset: Int = 0, entity: String = "musicVideo") {
+        self.searchUseCase = searchUseCase
+        self.playListUseCase = playListUseCase
+        self.actions = actions
         self.items = []
         self.musicVideos = .init(resultCount: 0, results: [])
         self.cancellables = []
@@ -52,7 +61,7 @@ final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
     
     private func load(with musicVideoQuery: MusicVideoQuery) {
         do {
-            try useCase.executeRequest(with: SearchMusicVideoUseCaseRequestValue(query: .init(query: musicVideoQuery.query), limit: limit, offset: offset, entity: entity))
+            try searchUseCase.executeRequest(with: SearchMusicVideoUseCaseRequestValue(query: .init(query: musicVideoQuery.query), limit: limit, offset: offset, entity: entity))
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] completion in
                     switch completion {
@@ -83,6 +92,11 @@ final class DefaultMusicVideoSearchViewModel: MusicVideoSearchViewModel {
     func didSearch(with query: String) {
         guard !query.isEmpty else { return }
         load(with: MusicVideoQuery(query: query))
+    }
+    
+    func didSelect(musicVideo: MusicVideo) -> MusicVideoDetailView? {
+        guard let actions = actions else { return nil }
+        return actions.showMusicVideoDetail(musicVideo)
     }
     
 }

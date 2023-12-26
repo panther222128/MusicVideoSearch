@@ -25,5 +25,5 @@ struct MusicVideoDetailView: View {
 }
 
 #Preview {
-    MusicVideoDetailView(viewModel: .init(id: .init(), artistName: "", trackName: "", artworkUrl100: ""))
+    MusicVideoDetailView(viewModel: DefaultMusicVideoDetailViewModel(playListUseCase: DefaultMusicVideoPlayListUseCase(repository: DefaultMusicVideoRepository(musicVideoStorage: DefaultMusicVideoStorage())), artistName: "", trackName: "", artworkUrl100: "", primaryGenreName: ""))
 }
