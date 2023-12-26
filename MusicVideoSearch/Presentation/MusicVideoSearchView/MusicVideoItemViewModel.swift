@@ -11,8 +11,6 @@ struct MusicVideoItemViewModel: Identifiable {
     let id: UUID
     let artistName: String
     let trackName: String
-    let artistViewURL: String
-    let trackViewURL: String
     let artworkUrl100: String
 }
 
@@ -21,8 +19,6 @@ extension MusicVideoItemViewModel {
         self.id = .init()
         self.artistName = musicVideo.artistName
         self.trackName = musicVideo.trackName
-        self.artistViewURL = musicVideo.artistViewURL
-        self.trackViewURL = musicVideo.trackViewURL
         self.artworkUrl100 = musicVideo.artworkUrl100
     }
 }

@@ -13,17 +13,8 @@ struct MusicVideos {
 }
 
 struct MusicVideo {
-    let wrapperType, kind: String
-    let artistID, trackID: Int
-    let artistName, trackName, trackCensoredName: String
-    let artistViewURL, trackViewURL: String
-    let previewURL: String?
-    let artworkUrl30, artworkUrl60, artworkUrl100: String
-    let collectionPrice: Double?
-    let trackPrice: Double?
-    let releaseDate: String
-    let collectionExplicitness, trackExplicitness: String
-    let trackTimeMillis: Int?
-    let country, currency, primaryGenreName: String
+    let artistName, trackName: String
+    let artworkUrl100: String
+    let primaryGenreName: String
 }
 
