@@ -32,6 +32,7 @@
 		A0C8571B2B35023D00F90B22 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8571A2B35023D00F90B22 /* APIEndpoints.swift */; };
 		A0C8571D2B35037B00F90B22 /* MusicVideoQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8571C2B35037B00F90B22 /* MusicVideoQuery.swift */; };
 		A0E5E92B2B3BBDCB001F0E47 /* ViewFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E5E92A2B3BBDCB001F0E47 /* ViewFlowCoordinator.swift */; };
+		A0E5E92D2B3BCCAF001F0E47 /* MusicVideoPlayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E5E92C2B3BCCAF001F0E47 /* MusicVideoPlayListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		A0C8571A2B35023D00F90B22 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		A0C8571C2B35037B00F90B22 /* MusicVideoQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoQuery.swift; sourceTree = "<group>"; };
 		A0E5E92A2B3BBDCB001F0E47 /* ViewFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlowCoordinator.swift; sourceTree = "<group>"; };
+		A0E5E92C2B3BCCAF001F0E47 /* MusicVideoPlayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoPlayListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				A00152912B34094600970A20 /* ContentView.swift */,
 				A00152C22B340E6500970A20 /* MusicVideoSearchView */,
 				A00152C32B340E7A00970A20 /* MusicVideoDetailVIew */,
+				A0E5E92E2B3BCCB4001F0E47 /* MusicVideoPlayListView */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -252,6 +255,14 @@
 			path = MusicVideoDTO;
 			sourceTree = "<group>";
 		};
+		A0E5E92E2B3BCCB4001F0E47 /* MusicVideoPlayListView */ = {
+			isa = PBXGroup;
+			children = (
+				A0E5E92C2B3BCCAF001F0E47 /* MusicVideoPlayListView.swift */,
+			);
+			path = MusicVideoPlayListView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,6 +337,7 @@
 				A00152B02B340D5400970A20 /* DataTransferService.swift in Sources */,
 				A00152CA2B3412AA00970A20 /* MusicVideo.swift in Sources */,
 				A00152D62B34189D00970A20 /* MusicVideoDetailView.swift in Sources */,
+				A0E5E92D2B3BCCAF001F0E47 /* MusicVideoPlayListView.swift in Sources */,
 				A00152BC2B340E3100970A20 /* MusicVideoSearchRepository.swift in Sources */,
 				A00152D12B3417EB00970A20 /* AppConfiguration.swift in Sources */,
 				A00152C52B340E9900970A20 /* MusicVideoSearchView.swift in Sources */,

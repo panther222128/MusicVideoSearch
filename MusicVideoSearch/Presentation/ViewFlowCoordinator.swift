@@ -38,4 +38,8 @@ final class ViewFlowCoordinator {
         return sceneDIContainer.makeMusicVideoDetailView(musicVideo: musicVideo)
     }
     
+    func makeMusicVideoPlayListView() -> MusicVideoPlayListView {
+        return MusicVideoPlayListView()
+    }
+    
 }
