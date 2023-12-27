@@ -8,38 +8,34 @@
 import Foundation
 
 protocol MusicVideoSearchFlowCoordinatorDependencies {
+    func makeMusicVideoSearchView(actions: MusicVideoSearchActions) -> MusicVideoSearchView
     func makeMusicVideoDetailView(musicVideo: MusicVideo) -> MusicVideoDetailView
+    func makeMusicVideoPlayListView() -> MusicVideoPlayListView
 }
 
 final class ViewFlowCoordinator {
     
     private let dependencies: MusicVideoSearchFlowCoordinatorDependencies
-    private let sceneDIContainer: SceneDIContainer
     
-    init(dependencies: MusicVideoSearchFlowCoordinatorDependencies, sceneDIContainer: SceneDIContainer) {
+    init(dependencies: MusicVideoSearchFlowCoordinatorDependencies) {
         self.dependencies = dependencies
-        self.sceneDIContainer = sceneDIContainer
     }
     
     func start() -> ContentView {
-        return ContentView(flow: self)
+        return ContentView(viewFlowCoordinator: self)
     }
     
     func makeMusicVideoSearchView() -> MusicVideoSearchView {
         let actions = MusicVideoSearchActions(showMusicVideoDetail: showMusicVideoDetail(musicVideo:))
-        return sceneDIContainer.makeMusicVideoSearchView(actions: actions)
-    }
-    
-    func makeMusicVideoDetailView(musicVideo: MusicVideo) -> MusicVideoDetailView {
-        return sceneDIContainer.makeMusicVideoDetailView(musicVideo: musicVideo)
+        return dependencies.makeMusicVideoSearchView(actions: actions)
     }
     
     private func showMusicVideoDetail(musicVideo: MusicVideo) -> MusicVideoDetailView {
-        return sceneDIContainer.makeMusicVideoDetailView(musicVideo: musicVideo)
+        return dependencies.makeMusicVideoDetailView(musicVideo: musicVideo)
     }
     
     func makeMusicVideoPlayListView() -> MusicVideoPlayListView {
-        return MusicVideoPlayListView()
+        return dependencies.makeMusicVideoPlayListView()
     }
     
 }

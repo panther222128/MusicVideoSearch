@@ -17,7 +17,7 @@ final class AppFlowCoordinator {
     
     func start() -> ContentView {
         let sceneDIContainer = appDIContainer.makeSceneDIContainer()
-        let flow = sceneDIContainer.makeMusicVideoSearchCoordinator(with: sceneDIContainer)
+        let flow = sceneDIContainer.makeMusicVideoSearchCoordinator()
         return flow.start()
     }
     

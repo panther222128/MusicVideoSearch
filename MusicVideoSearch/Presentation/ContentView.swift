@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
     
@@ -30,8 +29,8 @@ struct ContentView: View {
         }
     }
     
-    init(flow: ViewFlowCoordinator) {
-        self.viewFlowCoordinator = flow
+    init(viewFlowCoordinator: ViewFlowCoordinator) {
+        self.viewFlowCoordinator = viewFlowCoordinator
     }
     
 }

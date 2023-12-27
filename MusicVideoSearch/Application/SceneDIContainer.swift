@@ -35,8 +35,12 @@ final class SceneDIContainer: MusicVideoSearchFlowCoordinatorDependencies {
         return MusicVideoDetailView(musicVideo: musicVideo)
     }
     
-    func makeMusicVideoSearchCoordinator(with sceneDIContainer: SceneDIContainer) -> ViewFlowCoordinator {
-        return ViewFlowCoordinator(dependencies: self, sceneDIContainer: sceneDIContainer)
+    func makeMusicVideoSearchCoordinator() -> ViewFlowCoordinator {
+        return ViewFlowCoordinator(dependencies: self)
+    }
+    
+    func makeMusicVideoPlayListView() -> MusicVideoPlayListView {
+        return MusicVideoPlayListView()
     }
     
 }
