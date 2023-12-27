@@ -8,12 +8,16 @@
 import SwiftUI
 import Combine
 
+struct MusicVideoSearchActions {
+    let showMusicVideoDetail: (MusicVideo) -> MusicVideoDetailView
+}
+
 struct MusicVideoSearchView: View {
     
     @State var query: String = ""
     @State var musicVideos: [MusicVideo] = []
     private let useCase: MusicVideoSearchUseCase
-    private let sceneDIContainer: SceneDIContainer
+    private let actions: MusicVideoSearchActions
     private let limit: Int
     private let offset: Int
     private let entity: String
@@ -56,7 +60,7 @@ struct MusicVideoSearchView: View {
             ScrollView(showsIndicators: false) {
                 VStack {
                     ForEach(musicVideos) { musicVideo in
-                        NavigationLink(destination: sceneDIContainer.makeMusicVideoDetailView(musicVideo: musicVideo)) {
+                        NavigationLink(destination: actions.showMusicVideoDetail(musicVideo)) {
                             HStack {
                                 if let url = URL(string: musicVideo.artworkUrl100) {
                                     AsyncImage(url: url)
@@ -76,9 +80,9 @@ struct MusicVideoSearchView: View {
         }
     }
     
-    init(useCase: MusicVideoSearchUseCase, sceneDIContainer: SceneDIContainer, limit: Int = 20, offset: Int = 0, entity: String = "musicVideo") {
+    init(useCase: MusicVideoSearchUseCase, actions: MusicVideoSearchActions, limit: Int = 20, offset: Int = 0, entity: String = "musicVideo") {
         self.useCase = useCase
-        self.sceneDIContainer = sceneDIContainer
+        self.actions = actions
         self.limit = limit
         self.offset = offset
         self.entity = entity
@@ -88,5 +92,5 @@ struct MusicVideoSearchView: View {
 
 // MARK: - MusicVideoSearchView
 #Preview {
-    ContentView(sceneDIContainer: AppDIContainer().makeSceneDIContainer())
+    Text("")
 }

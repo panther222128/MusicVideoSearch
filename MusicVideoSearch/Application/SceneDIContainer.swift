@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SceneDIContainer {
+final class SceneDIContainer: MusicVideoSearchFlowCoordinatorDependencies {
     
     struct Dependencies {
         let apiDataTransferService: DataTransferService
@@ -27,16 +27,16 @@ final class SceneDIContainer {
         return DefaultMusicVideoSearchUseCase(repository: makeMusicVideoSearchRepository())
     }
     
-    func makeMusicVideoSearchView(with sceneDIContainer: SceneDIContainer) -> MusicVideoSearchView {
-        return MusicVideoSearchView(useCase: makeMusicVideoSearchUseCase(), sceneDIContainer: sceneDIContainer)
+    func makeMusicVideoSearchView(actions: MusicVideoSearchActions) -> MusicVideoSearchView {
+        return MusicVideoSearchView(useCase: makeMusicVideoSearchUseCase(), actions: actions)
     }
     
     func makeMusicVideoDetailView(musicVideo: MusicVideo) -> MusicVideoDetailView {
         return MusicVideoDetailView(musicVideo: musicVideo)
     }
     
-    func makeContentView(with sceneDIContainer: SceneDIContainer) -> ContentView {
-        return ContentView(sceneDIContainer: sceneDIContainer)
+    func makeMusicVideoSearchCoordinator(with sceneDIContainer: SceneDIContainer) -> ViewFlowCoordinator {
+        return ViewFlowCoordinator(dependencies: self, sceneDIContainer: sceneDIContainer)
     }
     
 }

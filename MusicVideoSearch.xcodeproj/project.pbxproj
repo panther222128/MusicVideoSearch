@@ -31,6 +31,7 @@
 		A0C857192B3500FD00F90B22 /* MusicVideoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C857182B3500FD00F90B22 /* MusicVideoRequestDTO.swift */; };
 		A0C8571B2B35023D00F90B22 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8571A2B35023D00F90B22 /* APIEndpoints.swift */; };
 		A0C8571D2B35037B00F90B22 /* MusicVideoQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8571C2B35037B00F90B22 /* MusicVideoQuery.swift */; };
+		A0E5E92B2B3BBDCB001F0E47 /* ViewFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E5E92A2B3BBDCB001F0E47 /* ViewFlowCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		A0C857182B3500FD00F90B22 /* MusicVideoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoRequestDTO.swift; sourceTree = "<group>"; };
 		A0C8571A2B35023D00F90B22 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
 		A0C8571C2B35037B00F90B22 /* MusicVideoQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoQuery.swift; sourceTree = "<group>"; };
+		A0E5E92A2B3BBDCB001F0E47 /* ViewFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFlowCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 		A00152B82B340DD100970A20 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				A0E5E92A2B3BBDCB001F0E47 /* ViewFlowCoordinator.swift */,
 				A00152912B34094600970A20 /* ContentView.swift */,
 				A00152C22B340E6500970A20 /* MusicVideoSearchView */,
 				A00152C32B340E7A00970A20 /* MusicVideoDetailVIew */,
@@ -341,6 +344,7 @@
 				A0C857192B3500FD00F90B22 /* MusicVideoRequestDTO.swift in Sources */,
 				A00152B52B340D8C00970A20 /* Encodable.swift in Sources */,
 				A00152CF2B3414A400970A20 /* SceneDIContainer.swift in Sources */,
+				A0E5E92B2B3BBDCB001F0E47 /* ViewFlowCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

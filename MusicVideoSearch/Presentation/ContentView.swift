@@ -9,12 +9,13 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    private let sceneDIContainer: SceneDIContainer
+    
+    private let viewFlowCoordinator: ViewFlowCoordinator
     
     var body: some View {
         NavigationStack {
             TabView {
-                sceneDIContainer.makeMusicVideoSearchView(with: sceneDIContainer)
+                viewFlowCoordinator.makeMusicVideoSearchView()
                     .tabItem {
                         Image(systemName: "magnifyingglass")
                     }
@@ -22,11 +23,12 @@ struct ContentView: View {
         }
     }
     
-    init(sceneDIContainer: SceneDIContainer) {
-        self.sceneDIContainer = sceneDIContainer
+    init(flow: ViewFlowCoordinator) {
+        self.viewFlowCoordinator = flow
     }
+    
 }
 
 #Preview {
-    ContentView(sceneDIContainer: AppDIContainer().makeSceneDIContainer())
+    Text("")
 }
