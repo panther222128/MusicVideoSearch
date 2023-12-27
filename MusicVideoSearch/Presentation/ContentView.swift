@@ -9,29 +9,24 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    let sceneDIContainer: SceneDIContainer
-    let searchViewModelActions: MusicVideoSearchViewModelActions
+    private let sceneDIContainer: SceneDIContainer
     
     var body: some View {
-        let viewModel = sceneDIContainer.makeMusicVideoSearchViewModel(actions: searchViewModelActions)
         NavigationStack {
             TabView {
-                MusicVideoSearchView(viewModel: viewModel)
+                sceneDIContainer.makeMusicVideoSearchView(with: sceneDIContainer)
                     .tabItem {
                         Image(systemName: "magnifyingglass")
-                    }
-                
-                MusicVideoPlayListView(viewModel: sceneDIContainer.makeMusicVideoPlayListViewModel())
-                    .tabItem {
-                        Image(systemName: "star.fill")
                     }
             }
         }
     }
+    
+    init(sceneDIContainer: SceneDIContainer) {
+        self.sceneDIContainer = sceneDIContainer
+    }
 }
 
 #Preview {
-    ContentView(sceneDIContainer: AppDIContainer().makeSceneDIContainer(), searchViewModelActions: .init(showMusicVideoDetail: { musicVideo in
-        MusicVideoDetailView(viewModel: DefaultMusicVideoDetailViewModel(playListUseCase: DefaultMusicVideoPlayListUseCase(repository: DefaultMusicVideoRepository(musicVideoStorage: DefaultMusicVideoStorage())), artistName: musicVideo.artistName, trackName: musicVideo.trackName, artworkUrl100: musicVideo.artworkUrl100, primaryGenreName: musicVideo.primaryGenreName))
-    }))
+    ContentView(sceneDIContainer: AppDIContainer().makeSceneDIContainer())
 }

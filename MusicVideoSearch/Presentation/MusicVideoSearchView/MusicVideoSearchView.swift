@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
+import Combine
 
-/*
- 1. CoreGraphics error: 'Error: this application, or a library it uses, has passed an invalid numeric value (NaN, or not-a-number) to CoreGraphics API and this value is being ignored. Please fix this problem.'
- 2. Preview
- */
-
-struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchViewModel {
+struct MusicVideoSearchView: View {
     
     @State var query: String = ""
-    @ObservedObject var viewModel: ViewModel
+    @State var musicVideos: [MusicVideo] = []
+    private let useCase: MusicVideoSearchUseCase
+    private let sceneDIContainer: SceneDIContainer
+    private let limit: Int
+    private let offset: Int
+    private let entity: String
+    @State var cancellables: Set<AnyCancellable> = []
     
     var body: some View {
         VStack {
@@ -25,7 +27,26 @@ struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchVi
                     .foregroundStyle(.primary)
             }
             .onSubmit {
-                viewModel.didSearch(with: query)
+                do {
+                    try useCase.executeRequest(with: .init(query: .init(query: query), limit: limit, offset: offset, entity: entity))
+                        .receive(on: DispatchQueue.main)
+                        .sink { completion in
+                            switch completion {
+                            case .finished:
+                                return
+                                
+                            case .failure(let error):
+                                print(error)
+                                
+                            }
+                        } receiveValue: { musicVideos in
+                            self.musicVideos = musicVideos.results
+                        }
+                        .store(in: &cancellables)
+                } catch {
+                    
+                }
+
             }
             .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
             .foregroundStyle(.secondary)
@@ -34,35 +55,38 @@ struct MusicVideoSearchView<ViewModel>: View where ViewModel: MusicVideoSearchVi
             
             ScrollView(showsIndicators: false) {
                 VStack {
-                    ForEach(viewModel.items) { item in
-                        NavigationLink(destination: viewModel.didSelect(musicVideo: .init(artistName: item.artistName, trackName: item.trackName, artworkUrl100: item.artworkUrl100, primaryGenreName: item.primaryGenreName))) {
+                    ForEach(musicVideos) { musicVideo in
+                        NavigationLink(destination: sceneDIContainer.makeMusicVideoDetailView(musicVideo: musicVideo)) {
                             HStack {
-                                if let url = URL(string: item.artworkUrl100) {
+                                if let url = URL(string: musicVideo.artworkUrl100) {
                                     AsyncImage(url: url)
                                 }
-                                Text(item.artistName)
+                                Text(musicVideo.artistName)
                                     .foregroundStyle(Color.black)
                                 Text("-")
                                     .foregroundStyle(Color.black)
-                                Text(item.trackName)
+                                Text(musicVideo.trackName)
                                     .foregroundStyle(Color.black)
                                 Spacer()
                             }
                         }
                     }
                 }
-                .alert(isPresented: $viewModel.isErrorOccured) {
-                    Alert(title: Text("Error"), message: Text(viewModel.error?.localizedDescription ?? ""), dismissButton: .cancel())
-                }
             }
         }
+    }
+    
+    init(useCase: MusicVideoSearchUseCase, sceneDIContainer: SceneDIContainer, limit: Int = 20, offset: Int = 0, entity: String = "musicVideo") {
+        self.useCase = useCase
+        self.sceneDIContainer = sceneDIContainer
+        self.limit = limit
+        self.offset = offset
+        self.entity = entity
     }
     
 }
 
 // MARK: - MusicVideoSearchView
 #Preview {
-    ContentView(sceneDIContainer: AppDIContainer().makeSceneDIContainer(), searchViewModelActions: .init(showMusicVideoDetail: { musicVideo in
-        MusicVideoDetailView(viewModel: DefaultMusicVideoDetailViewModel(playListUseCase: DefaultMusicVideoPlayListUseCase(repository: DefaultMusicVideoRepository(musicVideoStorage: DefaultMusicVideoStorage())), artistName: "", trackName: "", artworkUrl100: "", primaryGenreName: ""))
-    }))
+    ContentView(sceneDIContainer: AppDIContainer().makeSceneDIContainer())
 }

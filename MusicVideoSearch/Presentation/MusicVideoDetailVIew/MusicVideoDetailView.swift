@@ -8,22 +8,33 @@
 import SwiftUI
 
 struct MusicVideoDetailView: View {
-    let viewModel: MusicVideoDetailViewModel
+    private let musicVideo: MusicVideo
     
     var body: some View {
         VStack {
-            if let imageUrl = URL(string: viewModel.artworkUrl100) {
+            Text(musicVideo.primaryGenreName)
+            if let imageUrl = URL(string: musicVideo.artworkUrl100) {
                 AsyncImage(url: imageUrl)
             }
             HStack {
-                Text(viewModel.trackName)
+                Text(musicVideo.trackName)
                 Text("-")
-                Text(viewModel.artistName)
+                Text(musicVideo.artistName)
             }
+            Button {
+                
+            } label: {
+                
+            }
+
         }
+    }
+    
+    init(musicVideo: MusicVideo) {
+        self.musicVideo = musicVideo
     }
 }
 
 #Preview {
-    MusicVideoDetailView(viewModel: DefaultMusicVideoDetailViewModel(playListUseCase: DefaultMusicVideoPlayListUseCase(repository: DefaultMusicVideoRepository(musicVideoStorage: DefaultMusicVideoStorage())), artistName: "", trackName: "", artworkUrl100: "", primaryGenreName: ""))
+    MusicVideoDetailView(musicVideo: .init(id: .init(), artistName: "", trackName: "", artworkUrl100: "", primaryGenreName: ""))
 }

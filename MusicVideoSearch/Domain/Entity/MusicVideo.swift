@@ -12,7 +12,8 @@ struct MusicVideos {
     let results: [MusicVideo]
 }
 
-struct MusicVideo {
+struct MusicVideo: Identifiable {
+    let id: UUID
     let artistName, trackName: String
     let artworkUrl100: String
     let primaryGenreName: String

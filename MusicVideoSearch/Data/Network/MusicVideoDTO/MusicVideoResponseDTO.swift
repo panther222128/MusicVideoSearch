@@ -36,6 +36,6 @@ extension MusicVideosResponseDTO {
 
 extension MusicVideoResponseDTO {
     func toDomain() -> MusicVideo {
-        return .init(artistName: artistName, trackName: trackName, artworkUrl100: artworkUrl100, primaryGenreName: primaryGenreName)
+        return .init(id: .init(), artistName: artistName, trackName: trackName, artworkUrl100: artworkUrl100, primaryGenreName: primaryGenreName)
     }
 }

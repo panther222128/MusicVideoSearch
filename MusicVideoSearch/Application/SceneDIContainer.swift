@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SceneDIContainer: MusicVideoSearchFlowCoordinatorDependencies {
+final class SceneDIContainer {
     
     struct Dependencies {
         let apiDataTransferService: DataTransferService
@@ -15,46 +15,28 @@ final class SceneDIContainer: MusicVideoSearchFlowCoordinatorDependencies {
     
     private let dependencies: Dependencies
     
-    lazy var musicVideoStorage: MusicVideoStorage = DefaultMusicVideoStorage()
-    
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
     }
     
-    func makeMusicVideoSearchRepository() -> MusicVideoSearchRepository {
+    private func makeMusicVideoSearchRepository() -> MusicVideoSearchRepository {
         return DefaultMusicVideoSearchRepository(dataTransferService: dependencies.apiDataTransferService)
     }
     
-    func makeMusicVideoRepository() -> MusicVideoRepository {
-        return DefaultMusicVideoRepository(musicVideoStorage: musicVideoStorage)
-    }
-    
-    func makeMusicVideoSearchUseCase() -> MusicVideoSearchUseCase {
+    private func makeMusicVideoSearchUseCase() -> MusicVideoSearchUseCase {
         return DefaultMusicVideoSearchUseCase(repository: makeMusicVideoSearchRepository())
     }
     
-    func makeMusicVideoPlayListUseCase() -> MusicVideoPlayListUseCase {
-        return DefaultMusicVideoPlayListUseCase(repository: makeMusicVideoRepository())
-    }
-    
-    func makeMusicVideoSearchViewModel(actions: MusicVideoSearchViewModelActions) -> some MusicVideoSearchViewModel {
-        return DefaultMusicVideoSearchViewModel(searchUseCase: makeMusicVideoSearchUseCase(), playListUseCase: makeMusicVideoPlayListUseCase(), actions: actions)
-    }
-    
-    func makeMusicVideoPlayListViewModel() -> some MusicVideoPlayListViewModel {
-        return DefaultMusicVideoPlayListViewModel(playListUseCase: makeMusicVideoPlayListUseCase())
-    }
-    
-    func makeMusicVideoDetailViewModel(musicVideo: MusicVideo) -> some MusicVideoDetailViewModel {
-        return DefaultMusicVideoDetailViewModel(playListUseCase: makeMusicVideoPlayListUseCase(), artistName: musicVideo.artistName, trackName: musicVideo.trackName, artworkUrl100: musicVideo.artworkUrl100, primaryGenreName: musicVideo.primaryGenreName)
+    func makeMusicVideoSearchView(with sceneDIContainer: SceneDIContainer) -> MusicVideoSearchView {
+        return MusicVideoSearchView(useCase: makeMusicVideoSearchUseCase(), sceneDIContainer: sceneDIContainer)
     }
     
     func makeMusicVideoDetailView(musicVideo: MusicVideo) -> MusicVideoDetailView {
-        return MusicVideoDetailView(viewModel: makeMusicVideoDetailViewModel(musicVideo: musicVideo))
+        return MusicVideoDetailView(musicVideo: musicVideo)
     }
-
-    func makeViewFlowCoordinator() -> ViewFlowCoordinator {
-        return ViewFlowCoordinator(dependencies: self)
+    
+    func makeContentView(with sceneDIContainer: SceneDIContainer) -> ContentView {
+        return ContentView(sceneDIContainer: sceneDIContainer)
     }
     
 }
