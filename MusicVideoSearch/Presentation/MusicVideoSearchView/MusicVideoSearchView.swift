@@ -14,10 +14,10 @@ struct MusicVideoSearchActions {
 
 struct MusicVideoSearchView: View {
     
-    @State var query: String = ""
-    @State var musicVideos: [MusicVideo] = []
-    @State var isErrorOccured: Bool = false
-    @State var error: Error?
+    @State private var query: String = ""
+    @State private var musicVideos: [MusicVideo] = []
+    @State private var isErrorOccured: Bool = false
+    @State private var error: Error?
     private let useCase: MusicVideoSearchUseCase
     private let actions: MusicVideoSearchActions
     private let limit: Int

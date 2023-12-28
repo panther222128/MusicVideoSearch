@@ -27,6 +27,11 @@
 		A00152D62B34189D00970A20 /* MusicVideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152D52B34189D00970A20 /* MusicVideoDetailView.swift */; };
 		A00152D82B34190A00970A20 /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152D72B34190A00970A20 /* AppDIContainer.swift */; };
 		A00152DA2B341B8200970A20 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00152D92B341B8200970A20 /* AppFlowCoordinator.swift */; };
+		A03A127B2B3D3BA50054439C /* MusicVideoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A127A2B3D3BA50054439C /* MusicVideoEntity.swift */; };
+		A03A127D2B3D3BFF0054439C /* MusicVideoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A127C2B3D3BFF0054439C /* MusicVideoStorage.swift */; };
+		A03A127F2B3D55C60054439C /* DefaultMusicVideoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A127E2B3D55C60054439C /* DefaultMusicVideoRepository.swift */; };
+		A03A12812B3D55E10054439C /* MusicVideoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A12802B3D55E10054439C /* MusicVideoRepository.swift */; };
+		A03A12832B3D587E0054439C /* MusicVideoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A12822B3D587E0054439C /* MusicVideoUseCase.swift */; };
 		A0C857172B3500F500F90B22 /* MusicVideoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C857162B3500F500F90B22 /* MusicVideoResponseDTO.swift */; };
 		A0C857192B3500FD00F90B22 /* MusicVideoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C857182B3500FD00F90B22 /* MusicVideoRequestDTO.swift */; };
 		A0C8571B2B35023D00F90B22 /* APIEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C8571A2B35023D00F90B22 /* APIEndpoints.swift */; };
@@ -57,6 +62,11 @@
 		A00152D52B34189D00970A20 /* MusicVideoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoDetailView.swift; sourceTree = "<group>"; };
 		A00152D72B34190A00970A20 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		A00152D92B341B8200970A20 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
+		A03A127A2B3D3BA50054439C /* MusicVideoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoEntity.swift; sourceTree = "<group>"; };
+		A03A127C2B3D3BFF0054439C /* MusicVideoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoStorage.swift; sourceTree = "<group>"; };
+		A03A127E2B3D55C60054439C /* DefaultMusicVideoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultMusicVideoRepository.swift; sourceTree = "<group>"; };
+		A03A12802B3D55E10054439C /* MusicVideoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoRepository.swift; sourceTree = "<group>"; };
+		A03A12822B3D587E0054439C /* MusicVideoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoUseCase.swift; sourceTree = "<group>"; };
 		A04BE6172B3A718500E3945C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C857162B3500F500F90B22 /* MusicVideoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoResponseDTO.swift; sourceTree = "<group>"; };
 		A0C857182B3500FD00F90B22 /* MusicVideoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoRequestDTO.swift; sourceTree = "<group>"; };
@@ -148,6 +158,7 @@
 			children = (
 				A00152B92B340DFF00970A20 /* Repository */,
 				A0C857142B3500D300F90B22 /* Network */,
+				A03A12792B3D3B940054439C /* Storage */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -178,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				A00152BD2B340E4000970A20 /* DefaultMusicVideoSearchRepository.swift */,
+				A03A127E2B3D55C60054439C /* DefaultMusicVideoRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -186,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				A00152BB2B340E3100970A20 /* MusicVideoSearchRepository.swift */,
+				A03A12802B3D55E10054439C /* MusicVideoRepository.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -194,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				A00152C02B340E6200970A20 /* MusicVideoSearchUseCase.swift */,
+				A03A12822B3D587E0054439C /* MusicVideoUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -243,6 +257,15 @@
 				A00152952B34094700970A20 /* Preview Content */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A03A12792B3D3B940054439C /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				A03A127A2B3D3BA50054439C /* MusicVideoEntity.swift */,
+				A03A127C2B3D3BFF0054439C /* MusicVideoStorage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		A0C857142B3500D300F90B22 /* Network */ = {
@@ -350,21 +373,26 @@
 				A00152D12B3417EB00970A20 /* AppConfiguration.swift in Sources */,
 				A00152C52B340E9900970A20 /* MusicVideoSearchView.swift in Sources */,
 				A0C8571D2B35037B00F90B22 /* MusicVideoQuery.swift in Sources */,
+				A03A127B2B3D3BA50054439C /* MusicVideoEntity.swift in Sources */,
 				A00152922B34094600970A20 /* ContentView.swift in Sources */,
 				A0C857172B3500F500F90B22 /* MusicVideoResponseDTO.swift in Sources */,
 				A00152BE2B340E4000970A20 /* DefaultMusicVideoSearchRepository.swift in Sources */,
 				A00152DA2B341B8200970A20 /* AppFlowCoordinator.swift in Sources */,
 				A00152AE2B340D3600970A20 /* NetworkConfiguration.swift in Sources */,
 				A00152AA2B340CB100970A20 /* NetworkService.swift in Sources */,
+				A03A127F2B3D55C60054439C /* DefaultMusicVideoRepository.swift in Sources */,
 				A00152D82B34190A00970A20 /* AppDIContainer.swift in Sources */,
 				A00152C12B340E6200970A20 /* MusicVideoSearchUseCase.swift in Sources */,
 				A00152B32B340D8500970A20 /* Dictionary.swift in Sources */,
 				A00152AC2B340D2000970A20 /* Endpoint.swift in Sources */,
 				A00152902B34094600970A20 /* MusicVideoSearchApp.swift in Sources */,
+				A03A127D2B3D3BFF0054439C /* MusicVideoStorage.swift in Sources */,
 				A0C857192B3500FD00F90B22 /* MusicVideoRequestDTO.swift in Sources */,
 				A00152B52B340D8C00970A20 /* Encodable.swift in Sources */,
+				A03A12812B3D55E10054439C /* MusicVideoRepository.swift in Sources */,
 				A00152CF2B3414A400970A20 /* SceneDIContainer.swift in Sources */,
 				A0E5E92B2B3BBDCB001F0E47 /* ViewFlowCoordinator.swift in Sources */,
+				A03A12832B3D587E0054439C /* MusicVideoUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

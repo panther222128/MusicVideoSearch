@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct MusicVideoDetailView: View {
+    
+    @Environment(\.modelContext) private var modelContext
+    @State private var isInserted: Bool = false
     private let musicVideo: MusicVideo
+    private let useCase: MusicVideoUseCase
     
     var body: some View {
         VStack {
@@ -30,11 +34,13 @@ struct MusicVideoDetailView: View {
         }
     }
     
-    init(musicVideo: MusicVideo) {
+    init(musicVideo: MusicVideo, useCase: MusicVideoUseCase) {
         self.musicVideo = musicVideo
+        self.useCase = useCase
     }
+    
 }
 
 #Preview {
-    MusicVideoDetailView(musicVideo: .init(id: .init(), artistName: "", trackName: "", artworkUrl100: "", primaryGenreName: ""))
+    Text("")
 }

@@ -14,6 +14,7 @@ final class SceneDIContainer: MusicVideoSearchFlowCoordinatorDependencies {
     }
     
     private let dependencies: Dependencies
+    private lazy var musicVideoStorage: MusicVideoStorage = DefaultMusicVideoStorage()
     
     init(dependencies: Dependencies) {
         self.dependencies = dependencies
@@ -23,8 +24,16 @@ final class SceneDIContainer: MusicVideoSearchFlowCoordinatorDependencies {
         return DefaultMusicVideoSearchRepository(dataTransferService: dependencies.apiDataTransferService)
     }
     
+    private func makeMusicVideoRepository() -> MusicVideoRepository {
+        return DefaultMusicVideoRepository(storage: musicVideoStorage)
+    }
+    
     private func makeMusicVideoSearchUseCase() -> MusicVideoSearchUseCase {
         return DefaultMusicVideoSearchUseCase(repository: makeMusicVideoSearchRepository())
+    }
+    
+    private func makeMusicVideoUseCase() -> MusicVideoUseCase {
+        return DefaultMusicVideoUseCase(repository: makeMusicVideoRepository())
     }
     
     func makeMusicVideoSearchView(actions: MusicVideoSearchActions) -> MusicVideoSearchView {
@@ -32,15 +41,15 @@ final class SceneDIContainer: MusicVideoSearchFlowCoordinatorDependencies {
     }
     
     func makeMusicVideoDetailView(musicVideo: MusicVideo) -> MusicVideoDetailView {
-        return MusicVideoDetailView(musicVideo: musicVideo)
+        return MusicVideoDetailView(musicVideo: musicVideo, useCase: makeMusicVideoUseCase())
+    }
+    
+    func makeMusicVideoPlayListView() -> MusicVideoPlayListView {
+        return MusicVideoPlayListView(useCase: makeMusicVideoUseCase())
     }
     
     func makeMusicVideoSearchCoordinator() -> ViewFlowCoordinator {
         return ViewFlowCoordinator(dependencies: self)
-    }
-    
-    func makeMusicVideoPlayListView() -> MusicVideoPlayListView {
-        return MusicVideoPlayListView()
     }
     
 }
