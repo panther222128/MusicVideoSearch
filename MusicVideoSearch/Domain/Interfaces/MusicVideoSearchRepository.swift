@@ -10,4 +10,5 @@ import Combine
 
 protocol MusicVideoSearchRepository {
     func requestMusicVideo(with searchQuery: MusicVideoQuery, limit: Int, offset: Int, entity: String) throws -> AnyPublisher<MusicVideos, Error>
+    func requestMusicVideo(with searchQuery: MusicVideoQuery, limit: Int, offset: Int, entity: String) async throws -> MusicVideos
 }

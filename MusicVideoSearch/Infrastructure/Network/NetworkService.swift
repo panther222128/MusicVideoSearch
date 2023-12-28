@@ -19,6 +19,7 @@ enum NetworkError: Error {
 
 protocol NetworkService {
     func request(endpoint: some Requestable) throws -> AnyPublisher<Data, Error>
+    func request(endpoint: some Requestable) async throws -> Data
 }
 
 final class DefaultNetworkService: NetworkService {
@@ -49,10 +50,24 @@ final class DefaultNetworkService: NetworkService {
         }
     }
     
+    func request(endpoint: some Requestable) async throws -> Data {
+        do {
+            let urlRequest = try endpoint.urlRequest(with: configuration)
+            let result = try await networkSessionManager.request(urlRequest)
+            guard let httpResponse = result.1 as? HTTPURLResponse else { throw NetworkError.httpURLResponse }
+            if httpResponse.statusCode != 200 {
+                throw NetworkError.error(statusCode: httpResponse.statusCode, data: result.0)
+            } else {
+                return result.0
+            }
+        }
+    }
+    
 }
 
 protocol NetworkSessionManager {
     func request(_ request: URLRequest) throws -> URLSession.DataTaskPublisher
+    func request(_ request: URLRequest) async throws -> (Data, URLResponse)
 }
 
 final class DefaultNetworkSessionManager: NetworkSessionManager {
@@ -64,6 +79,11 @@ final class DefaultNetworkSessionManager: NetworkSessionManager {
     func request(_ request: URLRequest) throws -> URLSession.DataTaskPublisher {
         guard let url = request.url else { throw NetworkError.urlGeneration }
         return URLSession.shared.dataTaskPublisher(for: url)
+    }
+    
+    func request(_ request: URLRequest) async throws -> (Data, URLResponse) {
+        guard let url = request.url else { throw NetworkError.urlGeneration }
+        return try await URLSession.shared.data(from: url)
     }
     
 }

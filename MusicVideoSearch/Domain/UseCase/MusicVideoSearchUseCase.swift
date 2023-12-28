@@ -10,6 +10,7 @@ import Combine
 
 protocol MusicVideoSearchUseCase {
     func executeRequest(with requestValue: SearchMusicVideoUseCaseRequestValue) throws -> AnyPublisher<MusicVideos, Error>
+    func executeRequest(with requestValue: SearchMusicVideoUseCaseRequestValue) async throws -> MusicVideos
 }
 
 final class DefaultMusicVideoSearchUseCase: MusicVideoSearchUseCase {
@@ -24,6 +25,14 @@ final class DefaultMusicVideoSearchUseCase: MusicVideoSearchUseCase {
         do {
             return try repository.requestMusicVideo(with: requestValue.query, limit: requestValue.limit, offset: requestValue.offset, entity: requestValue.entity)
                 .eraseToAnyPublisher()
+        } catch let error {
+            throw error
+        }
+    }
+    
+    func executeRequest(with requestValue: SearchMusicVideoUseCaseRequestValue) async throws -> MusicVideos {
+        do {
+            return try await repository.requestMusicVideo(with: requestValue.query, limit: requestValue.limit, offset: requestValue.offset, entity: requestValue.entity)
         } catch let error {
             throw error
         }

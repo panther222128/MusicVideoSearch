@@ -8,10 +8,6 @@
 import Foundation
 import Combine
 
-enum MusicVideoSearchRepositoryError: String, Error {
-    case request
-}
-
 final class DefaultMusicVideoSearchRepository: MusicVideoSearchRepository {
     
     private let dataTransferService: DataTransferService
@@ -29,8 +25,18 @@ final class DefaultMusicVideoSearchRepository: MusicVideoSearchRepository {
                     return data.toDomain()
                 }
                 .eraseToAnyPublisher()
-        } catch {
-            throw MusicVideoSearchRepositoryError.request
+        } catch let error {
+            throw error
+        }
+    }
+    
+    func requestMusicVideo(with searchQuery: MusicVideoQuery, limit: Int, offset: Int, entity: String) async throws -> MusicVideos {
+        let requestDTO = MusicVideoRequestDTO(term: searchQuery.query, limit: limit, offset: offset, entity: entity)
+        let endpoint = APIEndpoints.getMusicVideo(with: requestDTO)
+        do {
+            return try await dataTransferService.request(with: endpoint).toDomain()
+        } catch let error {
+            throw error
         }
     }
     

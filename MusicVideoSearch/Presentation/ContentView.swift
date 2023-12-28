@@ -16,14 +16,12 @@ struct ContentView: View {
             TabView {
                 viewFlowCoordinator.makeMusicVideoSearchView()
                     .tabItem {
-                        Image(systemName: "magnifyingglass")
-                        Text("Search")
+                        Label("Search", systemImage: "magnifyingglass")
                     }
                 
                 viewFlowCoordinator.makeMusicVideoPlayListView()
                     .tabItem {
-                        Image(systemName: "star.fill")
-                        Text("Playlist")
+                        Label("Playlist", systemImage: "star.fill")
                     }
             }
         }

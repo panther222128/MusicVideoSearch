@@ -16,6 +16,8 @@ struct MusicVideoSearchView: View {
     
     @State var query: String = ""
     @State var musicVideos: [MusicVideo] = []
+    @State var isErrorOccured: Bool = false
+    @State var error: Error?
     private let useCase: MusicVideoSearchUseCase
     private let actions: MusicVideoSearchActions
     private let limit: Int
@@ -31,31 +33,23 @@ struct MusicVideoSearchView: View {
                     .foregroundStyle(.primary)
             }
             .onSubmit {
-                do {
-                    try useCase.executeRequest(with: .init(query: .init(query: query), limit: limit, offset: offset, entity: entity))
-                        .receive(on: DispatchQueue.main)
-                        .sink { completion in
-                            switch completion {
-                            case .finished:
-                                return
-                                
-                            case .failure(let error):
-                                print(error)
-                                
-                            }
-                        } receiveValue: { musicVideos in
-                            self.musicVideos = musicVideos.results
-                        }
-                        .store(in: &cancellables)
-                } catch {
-                    
+                Task {
+                    do {
+                        let musicVideos = try await useCase.executeRequest(with: .init(query: .init(query: query), limit: limit, offset: offset, entity: entity))
+                        self.musicVideos = musicVideos.results
+                    } catch let error {
+                        isErrorOccured = true
+                        self.error = error
+                    }
                 }
-
             }
             .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
             .foregroundStyle(.secondary)
             .background(Color(.secondarySystemBackground))
             .cornerRadius(10.0)
+            .alert(isPresented: $isErrorOccured) {
+                Alert(title: Text("Error"), message: Text(error?.localizedDescription ?? ""), dismissButton: .cancel())
+            }
             
             ScrollView(showsIndicators: false) {
                 VStack {
@@ -86,6 +80,7 @@ struct MusicVideoSearchView: View {
         self.limit = limit
         self.offset = offset
         self.entity = entity
+        self.error = nil
     }
     
 }
