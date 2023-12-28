@@ -57,7 +57,7 @@
 		A00152D52B34189D00970A20 /* MusicVideoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoDetailView.swift; sourceTree = "<group>"; };
 		A00152D72B34190A00970A20 /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
 		A00152D92B341B8200970A20 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
-		A04BE6172B3A718500E3945C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A04BE6172B3A718500E3945C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0C857162B3500F500F90B22 /* MusicVideoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoResponseDTO.swift; sourceTree = "<group>"; };
 		A0C857182B3500FD00F90B22 /* MusicVideoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicVideoRequestDTO.swift; sourceTree = "<group>"; };
 		A0C8571A2B35023D00F90B22 /* APIEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoints.swift; sourceTree = "<group>"; };
@@ -96,15 +96,13 @@
 		A001528E2B34094600970A20 /* MusicVideoSearch */ = {
 			isa = PBXGroup;
 			children = (
-				A04BE6172B3A718500E3945C /* Info.plist */,
+				A03A12762B3D336F0054439C /* Resources */,
 				A00152CD2B34144900970A20 /* Application */,
 				A00152B82B340DD100970A20 /* Presentation */,
 				A00152B72B340DC900970A20 /* Domain */,
 				A00152B62B340DBB00970A20 /* Data */,
 				A00152A72B340C6E00970A20 /* Infrastructure */,
 				A00152B12B340D7800970A20 /* Extensions */,
-				A00152932B34094700970A20 /* Assets.xcassets */,
-				A00152952B34094700970A20 /* Preview Content */,
 			);
 			path = MusicVideoSearch;
 			sourceTree = "<group>";
@@ -235,6 +233,16 @@
 				A00152D92B341B8200970A20 /* AppFlowCoordinator.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		A03A12762B3D336F0054439C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A04BE6172B3A718500E3945C /* Info.plist */,
+				A00152932B34094700970A20 /* Assets.xcassets */,
+				A00152952B34094700970A20 /* Preview Content */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A0C857142B3500D300F90B22 /* Network */ = {
@@ -490,11 +498,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MusicVideoSearch/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MusicVideoSearch/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 3ZJJVW89MW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MusicVideoSearch/Info.plist;
+				INFOPLIST_FILE = MusicVideoSearch/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -524,11 +532,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MusicVideoSearch/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MusicVideoSearch/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 3ZJJVW89MW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MusicVideoSearch/Info.plist;
+				INFOPLIST_FILE = MusicVideoSearch/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
