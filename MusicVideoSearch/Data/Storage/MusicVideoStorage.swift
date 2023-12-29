@@ -15,7 +15,6 @@ enum MusicVideoStorageError: Error {
 protocol MusicVideoStorage {
     func read(using modelContext: ModelContext) throws -> [MusicVideoEntity]
     func insert(musicVideo: MusicVideo, using modelContext: ModelContext)
-    func delete(musicVideoEntity: MusicVideoEntity, using modelContext: ModelContext)
     func delete(at index: Int, using modelContext: ModelContext)
 }
 
@@ -35,10 +34,6 @@ final class DefaultMusicVideoStorage: MusicVideoStorage {
     
     func insert(musicVideo: MusicVideo, using modelContext: ModelContext) {
         modelContext.insert(MusicVideoEntity(id: musicVideo.id, artistName: musicVideo.artistName, trackName: musicVideo.trackName, artworkUrl100: musicVideo.artworkUrl100, primaryGenreName: musicVideo.primaryGenreName))
-    }
-    
-    func delete(musicVideoEntity: MusicVideoEntity, using modelContext: ModelContext) {
-        modelContext.delete(musicVideoEntity)
     }
     
     func delete(at index: Int, using modelContext: ModelContext) {

@@ -29,7 +29,7 @@ struct MusicVideoDetailView: View {
                 if !isInserted {
                     useCase.insert(musicVideo: musicVideo, using: modelContext)
                 } else {
-                    useCase.delete(musicVideo: musicVideo, using: modelContext)
+                    
                 }
             } label: {
                 if !isInserted {
