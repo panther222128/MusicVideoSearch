@@ -11,4 +11,5 @@ protocol MusicVideoRepository {
     func read(using modelContext: ModelContext) throws -> [MusicVideo]
     func insert(musicVideo: MusicVideo, using modelContext: ModelContext)
     func delete(musicVideo: MusicVideo, using modelContext: ModelContext)
+    func delete(at index: Int, using modelContext: ModelContext)
 }

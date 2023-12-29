@@ -16,6 +16,7 @@ protocol MusicVideoStorage {
     func read(using modelContext: ModelContext) throws -> [MusicVideoEntity]
     func insert(musicVideo: MusicVideo, using modelContext: ModelContext)
     func delete(musicVideoEntity: MusicVideoEntity, using modelContext: ModelContext)
+    func delete(at index: Int, using modelContext: ModelContext)
 }
 
 final class DefaultMusicVideoStorage: MusicVideoStorage {
@@ -38,6 +39,16 @@ final class DefaultMusicVideoStorage: MusicVideoStorage {
     
     func delete(musicVideoEntity: MusicVideoEntity, using modelContext: ModelContext) {
         modelContext.delete(musicVideoEntity)
+    }
+    
+    func delete(at index: Int, using modelContext: ModelContext) {
+        do {
+            let musicVideoEntities = try modelContext.fetch(FetchDescriptor<MusicVideoEntity>())
+            let musicVideoEntity = musicVideoEntities[index]
+            modelContext.delete(musicVideoEntity)
+        } catch {
+            
+        }
     }
     
 }

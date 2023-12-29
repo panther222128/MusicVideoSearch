@@ -33,4 +33,8 @@ final class DefaultMusicVideoRepository: MusicVideoRepository {
         storage.delete(musicVideoEntity: .init(id: musicVideo.id, artistName: musicVideo.artistName, trackName: musicVideo.trackName, artworkUrl100: musicVideo.artworkUrl100, primaryGenreName: musicVideo.primaryGenreName), using: modelContext)
     }
     
+    func delete(at index: Int, using modelContext: ModelContext) {
+        storage.delete(at: index, using: modelContext)
+    }
+    
 }

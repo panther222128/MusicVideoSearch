@@ -26,11 +26,18 @@ struct MusicVideoDetailView: View {
                 Text(musicVideo.artistName)
             }
             Button {
-                
+                if !isInserted {
+                    useCase.insert(musicVideo: musicVideo, using: modelContext)
+                } else {
+                    useCase.delete(musicVideo: musicVideo, using: modelContext)
+                }
             } label: {
-                
+                if !isInserted {
+                    Image(systemName: "star")
+                } else {
+                    Image(systemName: "star.fill")
+                }
             }
-
         }
     }
     

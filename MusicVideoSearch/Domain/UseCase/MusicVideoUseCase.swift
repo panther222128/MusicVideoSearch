@@ -13,6 +13,7 @@ protocol MusicVideoUseCase {
     func read(using modelContext: ModelContext) throws -> [MusicVideo]
     func insert(musicVideo: MusicVideo, using modelContext: ModelContext)
     func delete(musicVideo: MusicVideo, using modelContext: ModelContext)
+    func delete(at index: Int, using modelContext: ModelContext)
 }
 
 final class DefaultMusicVideoUseCase: MusicVideoUseCase {
@@ -37,6 +38,10 @@ final class DefaultMusicVideoUseCase: MusicVideoUseCase {
     
     func delete(musicVideo: MusicVideo, using modelContext: ModelContext) {
         repository.delete(musicVideo: musicVideo, using: modelContext)
+    }
+    
+    func delete(at index: Int, using modelContext: ModelContext) {
+        repository.delete(at: index, using: modelContext)
     }
     
 }
