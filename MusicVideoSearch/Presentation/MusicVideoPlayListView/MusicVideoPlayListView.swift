@@ -11,6 +11,8 @@ struct MusicVideoPlayListView: View {
     
     @Environment(\.modelContext) private var modelContext
     @State var musicVideos: [MusicVideo] = []
+    @State var isErrorOccured: Bool = false
+    @State private var error: Error?
     private let useCase: MusicVideoUseCase
     
     var body: some View {
@@ -32,6 +34,9 @@ struct MusicVideoPlayListView: View {
                 }
             }
         }
+        .alert(isPresented: $isErrorOccured) {
+            Alert(title: Text("Error"), message: Text(error?.localizedDescription ?? ""), dismissButton: .cancel())
+        }
         .onAppear {
             loadMusicVideo()
         }
@@ -39,6 +44,7 @@ struct MusicVideoPlayListView: View {
     
     init(useCase: MusicVideoUseCase) {
         self.useCase = useCase
+        self.error = nil
     }
     
     private func loadMusicVideo() {
